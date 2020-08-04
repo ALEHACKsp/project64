@@ -156,11 +156,7 @@ void CSettings::AddHowToHandleSetting(const char * BaseDirectory)
     AddHandler(Rdb_GoodName, new CSettingTypeRomDatabase("Good Name", Game_GameName));
 	AddHandler(Rdb_RPCKey, new CSettingTypeRomDatabase("RPC Key", Game_RPCKey));
     AddHandler(Rdb_SaveChip, new CSettingTypeRDBSaveChip("Save Type", (uint32_t)SaveChip_Auto));
-#ifdef _DEBUG
-    AddHandler(Rdb_CpuType, new CSettingTypeRDBCpuType("CPU Type", CPU_SyncCores));
-#else
     AddHandler(Rdb_CpuType, new CSettingTypeRDBCpuType("CPU Type", CPU_Recompiler));
-#endif
     AddHandler(Rdb_RDRamSize, new CSettingTypeRDBRDRamSize("RDRAM Size", Default_RDRamSize));
     AddHandler(Rdb_CounterFactor, new CSettingTypeRomDatabase("Counter Factor", Default_CounterFactor));
     AddHandler(Rdb_UseTlb, new CSettingTypeRDBYesNo("Use TLB", Default_UseTlb));
@@ -394,11 +390,12 @@ void CSettings::AddHowToHandleSetting(const char * BaseDirectory)
 #ifdef _DEBUG
 	AddHandler(Plugin_GFX_Current, new CSettingTypeApplication("Plugin", "Graphics Dll", "GFX\\Project64-Video_d.dll"));
 	AddHandler(Plugin_AUDIO_Current, new CSettingTypeApplication("Plugin", "Audio Dll", "Audio\\Project64-Audio_d.dll"));
+    AddHandler(Plugin_CONT_Current, new CSettingTypeApplication("Plugin", "Controller Dll", "Input\\Project64-Input_d.dll"));
 #else
 	AddHandler(Plugin_GFX_Current, new CSettingTypeApplication("Plugin", "Graphics Dll", "GFX\\Project64-Video.dll"));
 	AddHandler(Plugin_AUDIO_Current, new CSettingTypeApplication("Plugin", "Audio Dll", "Audio\\Project64-Audio.dll"));
+    AddHandler(Plugin_CONT_Current, new CSettingTypeApplication("Plugin", "Controller Dll", "Input\\Project64-Input.dll"));
 #endif
-    AddHandler(Plugin_CONT_Current, new CSettingTypeApplication("Plugin", "Controller Dll", "Input\\PJ64_NRage.dll"));
 #else
     AddHandler(Plugin_RSP_Current, new CSettingTypeApplication("Plugin", "RSP Dll", "libProject64-rsp-hle.so"));
     AddHandler(Plugin_GFX_Current, new CSettingTypeApplication("Plugin", "Graphics Dll", "libProject64-gfx.so"));
